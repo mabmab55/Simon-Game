@@ -15,6 +15,21 @@ function selectRandomcolor() {
   return number;
 }
 
+//Detecting and Registering user button clicks
+$("div[type=button]").click(function(evt) {
+  let userChosenColor = evt.target.id;
+  playSoundEffect(evt.target.id);
+  animateClickedButton(evt.target.id);
+  userClickedPattern.push(userChosenColor);
+});
+
+function animateClickedButton(color) {
+  $("#"+color).addClass("pressed");
+  setTimeout(function() {
+    $("#"+color).removeClass("pressed");
+  }, 100);
+} 
+
 function playSoundEffect(color) {
   let audio;
   switch (color) {
@@ -45,8 +60,3 @@ function playSoundEffect(color) {
       break;
   }
 }
-
-$("div[type]").click(function(evt) {
-  let userChosenColor = evt.target.id;
-  userClickedPattern.push(userChosenColor);
-});
