@@ -1,15 +1,17 @@
-let colours = ["green", "red", "yellow", "blue"];
+let colors = ["green", "red", "yellow", "blue"];
 
 let gamePattern = [];
+let userClickedPattern = [];
 
-function selectRandomColor() {
+function selectRandomcolor() {
   let number = Math.floor(Math.random() * 4);
-  let randomChosenColour = colours[number];
-  gamePattern.push(randomChosenColour);
-  //Flash animation
-  $("#" + randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+  let randomChosencolor = colors[number];
+  gamePattern.push(randomChosencolor);
 
-  playSoundEffect(randomChosenColour);
+  //Flash animation
+  $("#" + randomChosencolor).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+
+  playSoundEffect(randomChosencolor);
   return number;
 }
 
@@ -43,3 +45,8 @@ function playSoundEffect(color) {
       break;
   }
 }
+
+$("div[type]").click(function(evt) {
+  let userChosenColor = evt.target.id;
+  userClickedPattern.push(userChosenColor);
+});
