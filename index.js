@@ -2,21 +2,30 @@ let colors = ["green", "red", "yellow", "blue"];
 
 let gamePattern = [];
 let userClickedPattern = [];
+let hasGameStarted = false;
+let level = 0;
+
 
 //Detect keypress to start the game
-
-
+$(document).keypress(function() {
+  if(!hasGameStarted) {
+    selectRandomcolor();
+    hasGameStarted = true;
+  }
+})
 
 function selectRandomcolor() {
   let number = Math.floor(Math.random() * 4);
   let randomChosencolor = colors[number];
   gamePattern.push(randomChosencolor);
 
-  //Flash animation
+  //On click button animation
   $("#" + randomChosencolor).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-
   playSoundEffect(randomChosencolor);
-  return number;
+  
+  $("h1").text("Level " + level)
+  level++;
+  console.log(number);
 }
 
 //Detecting and Registering user button clicks
