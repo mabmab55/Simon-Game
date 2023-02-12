@@ -14,6 +14,20 @@ $(document).keypress(function() {
   }
 })
 
+//Detecting and Registering user button clicks
+$("div[type=button]").click(function(evt) {
+  let userChosenColor = evt.target.id;
+  userClickedPattern.push(userChosenColor);
+
+  //On click animation
+  playSoundEffect(evt.target.id);
+  animateClickedButton(evt.target.id);
+
+
+    checkAnswer(userClickedPattern.length-1)
+});
+
+
 function selectRandomcolor() {
   let number = Math.floor(Math.random() * 4);
   let randomChosencolor = colors[number];
@@ -25,17 +39,25 @@ function selectRandomcolor() {
   
   $("h1").text("Level " + level)
   level++;
-  console.log(number);
+  //console.log(number);
 }
 
-//Detecting and Registering user button clicks
-$("div[type=button]").click(function(evt) {
-  let userChosenColor = evt.target.id;
-  playSoundEffect(evt.target.id);
-  animateClickedButton(evt.target.id);
-  userClickedPattern.push(userChosenColor);
-});
 
+function checkAnswer(currentIndex) {
+  if(gamePattern[currentIndex] === userClickedPattern[currentIndex]) {
+    console.log("fora")
+    if(currentIndex === gamePattern.length-1) {
+      console.log("dentro")
+      setTimeout(function() {
+        selectRandomcolor()
+        console.log("mais dentro");
+      }, 1000)
+      userClickedPattern = [];
+    }
+  } else {
+    console.log("errou");
+  }
+}
 
 
 //On click effects
