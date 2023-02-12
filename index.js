@@ -24,7 +24,7 @@ $("div[type=button]").click(function(evt) {
   animateClickedButton(evt.target.id);
 
 
-    checkAnswer(userClickedPattern.length-1)
+  checkAnswer(userClickedPattern.length-1);
 });
 
 
@@ -37,7 +37,7 @@ function selectRandomcolor() {
   $("#" + randomChosencolor).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
   playSoundEffect(randomChosencolor);
   
-  $("h1").text("Level " + level)
+  $("h1").text("Level " + level);
   level++;
   //console.log(number);
 }
@@ -47,7 +47,7 @@ function checkAnswer(currentIndex) {
   if(gamePattern[currentIndex] === userClickedPattern[currentIndex]) {
     if(currentIndex === gamePattern.length-1) {
       setTimeout(function() {
-        selectRandomcolor()
+        selectRandomcolor();
       }, 1000)
       userClickedPattern = [];
     }
@@ -58,7 +58,7 @@ function checkAnswer(currentIndex) {
     $("h1").text("Game Over!!!");
     setTimeout(() => {
       $("body").removeClass("game-over");
-      $("h1").text("Game Over, Press Any Key to Restart")
+      $("h1").text("Game Over, Press Any Key to Restart");
     }, 500);
 
     //resetting game configs
