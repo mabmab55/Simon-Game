@@ -3,6 +3,10 @@ let colors = ["green", "red", "yellow", "blue"];
 let gamePattern = [];
 let userClickedPattern = [];
 
+//Detect keypress to start the game
+
+
+
 function selectRandomcolor() {
   let number = Math.floor(Math.random() * 4);
   let randomChosencolor = colors[number];
@@ -23,6 +27,9 @@ $("div[type=button]").click(function(evt) {
   userClickedPattern.push(userChosenColor);
 });
 
+
+
+//On click effects
 function animateClickedButton(color) {
   $("#"+color).addClass("pressed");
   setTimeout(function() {
@@ -32,31 +39,7 @@ function animateClickedButton(color) {
 
 function playSoundEffect(color) {
   let audio;
-  switch (color) {
-    case "green":
-      audio = new Audio("sounds/" + color + ".mp3");
+  audio = new Audio("sounds/" + color + ".mp3");
       audio.volume = 0.2;
       audio.play();
-      break;
-
-    case "red":
-      audio = new Audio("sounds/" + color + ".mp3");
-      audio.volume = 0.2;
-      audio.play();
-      break;
-
-    case "yellow":
-      audio = new Audio("sounds/" + color + ".mp3");
-      audio.volume = 0.2;
-      audio.play();
-      break;
-
-    case "blue":
-      audio = new Audio("sounds/" + color + ".mp3");
-      audio.volume = 0.2;
-      audio.play();
-      break;
-    default:
-      break;
-  }
 }
