@@ -45,17 +45,27 @@ function selectRandomcolor() {
 
 function checkAnswer(currentIndex) {
   if(gamePattern[currentIndex] === userClickedPattern[currentIndex]) {
-    console.log("fora")
     if(currentIndex === gamePattern.length-1) {
-      console.log("dentro")
       setTimeout(function() {
         selectRandomcolor()
-        console.log("mais dentro");
       }, 1000)
       userClickedPattern = [];
     }
   } else {
-    console.log("errou");
+
+    playSoundEffect("wrong");
+    $("body").addClass("game-over");
+    $("h1").text("Game Over!!!");
+    setTimeout(() => {
+      $("body").removeClass("game-over");
+      $("h1").text("Game Over, Press Any Key to Restart")
+    }, 500);
+
+    //resetting game configs
+    gamePattern = [];
+    userClickedPattern = [];
+    hasGameStarted = false;
+    level = 0;
   }
 }
 
